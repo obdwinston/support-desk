@@ -1,0 +1,27 @@
+Back-end Packages
+
+bcryptjs - encrypts password
+colors - styled font in terminal
+concurrently - runs server and client concurrently
+dotenv - accesses environment variables
+express - backend framework for Node.js
+express-async-handler - handles async requests/responses with express
+jsonwebtoken - generates JSON web token
+mongoose - interface library between Node.js and MongoDB (e.g. database connection, models/schemas, etc.)
+nodemon - restarts Node.js applications automatically on saved file changes
+
+Front-end Packages
+
+npx create-react-app frontend --template redux
+
+axios
+react-icons - provides popular React icons
+react-modal
+react-redux
+react-router-dom - enables client-side routing
+react-toastify - provides pop-up notifications
+
+VSC QoL Extensions
+
+ES7+ React/React-Native/Redux Snippets
+Prettier
