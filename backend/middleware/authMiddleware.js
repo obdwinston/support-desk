@@ -19,6 +19,11 @@ const protect = asyncHandler(async (req, res, next) => {
       // req.user: user property added to request object
       // select("-password"): removes password property from findById object
 
+      if (!req.user) {
+        res.status(401);
+        throw new Error("Not authorised");
+      }
+
       next(); // calls next middleware
     } catch (error) {
       res.status(401);

@@ -404,3 +404,7 @@ footer {
     font-size: 1.5rem;
   }
 }
+
+.spacer {
+  height: 100px;
+}

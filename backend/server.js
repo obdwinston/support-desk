@@ -19,13 +19,9 @@ const PORT = process.env.PORT || 8000;
 app.use(express.json()); // parses JSON data
 app.use(express.urlencoded({ extended: false })); // parses URL-encoded data
 
-app.get("/", (req, res) => {
-  // res.send("hello");
-  res.status(200).json({ message: "Welcome" });
-});
-
 // routes
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/tickets", require("./routes/ticketRoutes"));
 app.use(errorHandler);
 
 // server

@@ -4,7 +4,7 @@ import authService from "./authService";
 // +---------------+
 // | Initial State |
 // +---------------+
-// - defines initial state
+// defines initial state
 
 // get user from local storage
 const user = JSON.parse(localStorage.getItem("user"));
@@ -20,15 +20,15 @@ const initialState = {
 // +---------+
 // | Actions |
 // +---------+
-// - creates payload for dispatch
-// - async thunk features action "tracking" (i.e. pending, fulfilled, rejected)
+// creates payload for dispatch
+// async thunk features action "tracking" (i.e. pending, fulfilled, rejected)
 
 // creates register action payload by calling authService.register
 export const register = createAsyncThunk(
   "auth/register",
-  async (user, thunkAPI) => {
+  async (userData, thunkAPI) => {
     try {
-      return await authService.register(user);
+      return await authService.register(userData);
     } catch (error) {
       const message =
         (error.response &&
@@ -43,18 +43,23 @@ export const register = createAsyncThunk(
 );
 
 // creates login action payload by calling authService.login
-export const login = createAsyncThunk("auth/login", async (user, thunkAPI) => {
-  try {
-    return await authService.login(user);
-  } catch (error) {
-    const message =
-      (error.response && error.response.data && error.response.data.message) ||
-      error.message ||
-      error.toString();
+export const login = createAsyncThunk(
+  "auth/login",
+  async (userData, thunkAPI) => {
+    try {
+      return await authService.login(userData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
 
-    return thunkAPI.rejectWithValue(message);
+      return thunkAPI.rejectWithValue(message);
+    }
   }
-});
+);
 
 // creates logout action payload by calling authService.logout
 export const logout = createAsyncThunk("auth/logout", async () => {
@@ -64,7 +69,7 @@ export const logout = createAsyncThunk("auth/logout", async () => {
 // +----------+
 // | Reducers |
 // +----------+
-// - dispatches payload and/or updates state to store
+// dispatches payload and/or updates state to store
 
 export const authSlice = createSlice({
   name: "auth",
