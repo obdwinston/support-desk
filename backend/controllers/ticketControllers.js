@@ -22,7 +22,7 @@ const getTickets = asyncHandler(async (req, res) => {
 });
 
 // @desc    gets user ticket
-// @route   GET /api/tickets/:id
+// @route   GET /api/tickets/:ticketId
 // @access  private
 const getTicket = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
@@ -32,7 +32,7 @@ const getTicket = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  const ticket = await Ticket.findById(req.params.id);
+  const ticket = await Ticket.findById(req.params.ticketId);
 
   if (!ticket) {
     res.status(404);
@@ -48,7 +48,7 @@ const getTicket = asyncHandler(async (req, res) => {
 });
 
 // @desc    deletes user ticket
-// @route   DELETE /api/tickets/:id
+// @route   DELETE /api/tickets/:ticketId
 // @access  private
 const deleteTicket = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
@@ -58,7 +58,7 @@ const deleteTicket = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  const ticket = await Ticket.findById(req.params.id);
+  const ticket = await Ticket.findById(req.params.ticketId);
 
   if (!ticket) {
     res.status(404);
@@ -70,13 +70,13 @@ const deleteTicket = asyncHandler(async (req, res) => {
     throw new Error("Not authorised");
   }
 
-  await Ticket.findByIdAndDelete(req.params.id);
+  await Ticket.findByIdAndDelete(req.params.ticketId);
 
   res.status(200).json({ success: true });
 });
 
 // @desc    updates user ticket
-// @route   DELETE /api/tickets/:id
+// @route   DELETE /api/tickets/:ticketId
 // @access  private
 const updateTicket = asyncHandler(async (req, res) => {
   const user = await User.findById(req.user.id);
@@ -86,7 +86,7 @@ const updateTicket = asyncHandler(async (req, res) => {
     throw new Error("User not found");
   }
 
-  const ticket = await Ticket.findById(req.params.id);
+  const ticket = await Ticket.findById(req.params.ticketId);
 
   if (!ticket) {
     res.status(404);
@@ -99,7 +99,7 @@ const updateTicket = asyncHandler(async (req, res) => {
   }
 
   const updatedTicket = await Ticket.findByIdAndUpdate(
-    req.params.id,
+    req.params.ticketId,
     req.body,
     { new: true } // creates ticket if does not exist
   );

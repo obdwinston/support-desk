@@ -16,8 +16,8 @@ npx create-react-app frontend --template redux
 
 axios
 react-icons - provides popular React icons
-react-modal
-react-redux
+react-modal - 
+react-redux - provides state management functions
 react-router-dom - enables client-side routing
 react-toastify - provides pop-up notifications
 

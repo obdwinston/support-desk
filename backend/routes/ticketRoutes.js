@@ -10,12 +10,16 @@ const {
 } = require("../controllers/ticketControllers");
 const { protect } = require("../middleware/authMiddleware");
 
+// .route allows method chaining
 router.route("/").get(protect, getTickets).post(protect, createTicket);
-// route allows method chaining
 router
-  .route("/:id")
+  .route("/:ticketId")
   .get(protect, getTicket)
   .delete(protect, deleteTicket)
   .put(protect, updateTicket);
+
+// note routes
+const noteRouter = require("./noteRoutes");
+router.use("/:ticketId/notes", noteRouter);
 
 module.exports = router;

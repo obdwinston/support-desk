@@ -27,3 +27,4 @@ const userSchema = mongoose.Schema(
 );
 
 module.exports = mongoose.model("User", userSchema);
+// MongoDB autoatically derives collection name from plural form of model name
