@@ -52,6 +52,10 @@ const createNote = asyncHandler(async (req, res) => {
     isStaff: false,
   });
 
+  await Ticket.findByIdAndUpdate(req.params.ticketId, {
+    status: "open",
+  });
+
   res.status(200).json(note);
 });
 
