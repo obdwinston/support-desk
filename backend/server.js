@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
@@ -23,6 +24,20 @@ app.use(express.urlencoded({ extended: false })); // parses URL-encoded data
 app.use("/api/users", require("./routes/userRoutes"));
 app.use("/api/tickets", require("./routes/ticketRoutes"));
 app.use(errorHandler);
+
+// serve frontend
+if (process.env.NODE_ENV === "production") {
+  // set static folder to frontend build folder
+  app.use(express.static(path.join(__dirname, "../frontend/build")));
+
+  app.get("*", (req, res) =>
+    res.sendFile(__dirname, "../", "frontend", "build", "index.html")
+  );
+} else {
+  app.get("/", (req, res) => {
+    res.status(200).json({ message: "Welcome to Support Desk" });
+  });
+}
 
 // server
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}...`));

@@ -14,10 +14,10 @@ Front-end Packages
 
 npx create-react-app frontend --template redux
 
-axios
+axios - simplifies HTTP method requests to server
 react-icons - provides popular React icons
-react-modal - 
-react-redux - provides state management functions
+react-modal - provides pop-up modal widget
+react-redux - simplifies state management process
 react-router-dom - enables client-side routing
 react-toastify - provides pop-up notifications
 
